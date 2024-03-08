@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Places from "./Places.jsx";
 import Error from "./Error.jsx";
+import { sortPlacesByDistance } from "../loc.js";
 
 export default function AvailablePlaces({ onSelectPlace }) {
   // Handling loading states.
@@ -15,18 +16,27 @@ export default function AvailablePlaces({ onSelectPlace }) {
       // Start fetching.
       setIsFetching(true);
       try {
-        const response = await fetch("http://localhost:3000/wrong");
+        const response = await fetch("http://localhost:3000/places");
 
         const responseDatas = await response.json();
         if (!response.ok) {
           throw new Error(`${response.status} ${response.text}`);
         }
-        setAvailablePlaces(responseDatas.places);
+        // Sort by nearest location.
+        navigator.geolocation.getCurrentPosition((position) => {
+          const { latitude, longitude } = position.coords;
+          const sortedPlaces = sortPlacesByDistance(
+            responseDatas.places,
+            latitude,
+            longitude
+          );
+          setAvailablePlaces(sortedPlaces);
+          // Stop fetching.
+          setIsFetching(false);
+        });
       } catch (e) {
         setError({ message: e.message || "Couille dans le potage." });
       }
-      // Stop fetching.
-      setIsFetching(false);
     }
     fetchPlaces();
   }, []);
