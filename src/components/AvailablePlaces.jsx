@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Places from "./Places.jsx";
 import Error from "./Error.jsx";
 import { sortPlacesByDistance } from "../loc.js";
+import { fetchAvailablePlaces } from "../http.js";
 
 export default function AvailablePlaces({ onSelectPlace }) {
   // Handling loading states.
@@ -16,17 +17,19 @@ export default function AvailablePlaces({ onSelectPlace }) {
       // Start fetching.
       setIsFetching(true);
       try {
-        const response = await fetch("http://localhost:3000/places");
+        const places = await fetchAvailablePlaces();
+        console.log(places);
+        /* const response = await fetch("http://localhost:3000/places");
 
         const responseDatas = await response.json();
         if (!response.ok) {
           throw new Error(`${response.status} ${response.text}`);
-        }
+        } */
         // Sort by nearest location.
         navigator.geolocation.getCurrentPosition((position) => {
           const { latitude, longitude } = position.coords;
           const sortedPlaces = sortPlacesByDistance(
-            responseDatas.places,
+            places,
             latitude,
             longitude
           );
