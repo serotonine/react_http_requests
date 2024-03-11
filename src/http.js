@@ -7,7 +7,7 @@ export async function fetchAvailablePlaces() {
   return responseDatas.places;
 }
 export async function fetchUserPlaces() {
-  const response = await fetch("http://localhost:3000/user-placesss");
+  const response = await fetch("http://localhost:3000/user-places");
   const responseDatas = await response.json();
   if (!response.ok) {
     throw new Error(`${response.status} ${response.text}`);
