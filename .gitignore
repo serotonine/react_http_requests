@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 docs
-package-lock.js
+package-lock.json
 *.local
 
 # Editor directories and files

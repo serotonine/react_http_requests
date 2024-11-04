@@ -9,7 +9,7 @@ export default function AvailablePlaces({ onSelectPlace }) {
   const [isFetching, setIsFetching] = useState(false);
   // Datas to be populate.
   const [availablePlaces, setAvailablePlaces] = useState([]);
-  // Fetching Errors
+  // Fetching Errors.
   const [error, setError] = useState();
 
   useEffect(() => {
@@ -18,13 +18,6 @@ export default function AvailablePlaces({ onSelectPlace }) {
       setIsFetching(true);
       try {
         const places = await fetchAvailablePlaces();
-        console.log(places);
-        /* const response = await fetch("http://localhost:3000/places");
-
-        const responseDatas = await response.json();
-        if (!response.ok) {
-          throw new Error(`${response.status} ${response.text}`);
-        } */
         // Sort by nearest location.
         navigator.geolocation.getCurrentPosition((position) => {
           const { latitude, longitude } = position.coords;
