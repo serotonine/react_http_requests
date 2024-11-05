@@ -6,7 +6,7 @@
 [ https://github.com/serotonine/react_http_requests](https://github.com/serotonine/react_http_requests)
 
 ### About
-Build [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller) react_investment_calculator : https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/39836928 (see Udemy course).
+Build [Maximilian Schwarzmüller](https://www.udemy.com/user/maximilian-schwarzmuller) React Placepicker : https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/39836928 (see Udemy course).
 
 ### Backend
 https://serotonine.alwaysdata.net/react/
